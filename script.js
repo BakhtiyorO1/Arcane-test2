@@ -177,8 +177,15 @@ document.querySelectorAll('.mobile-link').forEach(link => {
 // Booking Modal Handlers
 function openBookingModal(zoneName = '') {
     if (zoneName) {
-        document.getElementById('modal-zone-title').textContent = 'Бронирование: ' + zoneName;
-        document.getElementById('book-zone').value = zoneName.includes('720Hz') ? 'SOLO ZONE 720Hz' : zoneName;
+        const titleElem = document.getElementById('modal-zone-title');
+        if (titleElem) {
+            titleElem.textContent = 'Бронирование: ' + zoneName;
+        }
+        
+        const zoneElem = document.getElementById('book-zone');
+        if (zoneElem) {
+            zoneElem.value = zoneName.includes('720Hz') ? 'SOLO ZONE 720Hz' : zoneName;
+        }
     }
     document.getElementById('booking-modal').classList.remove('hidden');
 }
@@ -187,14 +194,27 @@ function closeBookingModal() {
     document.getElementById('booking-modal').classList.add('hidden');
 }
 
+// ОБНОВЛЕННАЯ ФУНКЦИЯ ОТПРАВКИ БРОНИ
 function handleBookingSubmit(e) {
     e.preventDefault();
+    
     const name = document.getElementById('book-name').value;
     const phone = document.getElementById('book-phone').value;
     const zone = document.getElementById('book-zone').value;
+    
+    const countElem = document.getElementById('book-count');
+    const count = countElem ? countElem.value : '1';
+    
+    // Получаем выбранный вариант из выпадающего списка
     const hours = document.getElementById('book-hours').value;
 
-    const text = `Здравствуйте! Хочу забронировать ПК в Arcane.%0AИмя: ${encodeURIComponent(name)}%0AТелефон: ${encodeURIComponent(phone)}%0AЗона: ${encodeURIComponent(zone)}%0AВремя/Пакет: ${encodeURIComponent(hours)}`;
+    const text = `Здравствуйте! Хочу забронировать ПК в Arcane.%0A` +
+                 `👤 Имя: ${encodeURIComponent(name)}%0A` +
+                 `📞 Телефон: ${encodeURIComponent(phone)}%0A` +
+                 `🕹 Зона: ${encodeURIComponent(zone)}%0A` +
+                 `🖥 Кол-во ПК: ${encodeURIComponent(count)}%0A` +
+                 `⏱ Пакет/Время: ${encodeURIComponent(hours)}`;
+
     window.open(`https://t.me/arcane_adm?text=${text}`, '_blank');
     closeBookingModal();
 }
@@ -223,20 +243,20 @@ function handleTournamentSubmit(e) {
 window.addEventListener('DOMContentLoaded', () => {
     renderZoneDetails('space');
 });
+
 // Функция для добавления анимации на любой элемент
 function addAnimation(elementSelector, animationName) {
     const element = document.querySelector(elementSelector);
     if (element) {
         element.classList.add('animate__animated', `animate__${animationName}`);
         
-        // Удаляем классы после завершения анимации, чтобы можно было повторить
         element.addEventListener('animationend', () => {
             element.classList.remove('animate__animated', `animate__${animationName}`);
         }, { once: true });
     }
 }
 
-// Пример: анимация встряхивания при клике на кнопку
+// Анимация кнопки
 document.addEventListener('DOMContentLoaded', () => {
     const button = document.querySelector('.btn');
     if (button) {

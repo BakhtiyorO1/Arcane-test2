@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARCANE CYBER CLUB — Топовый компьютерный клуб в Самарканде</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="tailwind.config.js"></script>
+
+    <!-- FontAwesome & Google Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script>
+  AOS.init({
+    duration: 800, // Длительность анимации в миллисекундах (0.8 сек)
+    once: true,     // Анимация срабатывает только 1 раз при первом скролле
+    easing: 'ease-out-cubic' // Плавность движения
+  });
+</script>
+<body class="bg-arcane-bg text-gray-100 antialiased selection:bg-arcane-purple selection:text-white">
+
+    <!-- HEADER NAVBAR -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-arcane-bg/90 backdrop-blur-md border-b border-arcane-border/50 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- LOGO -->
+                <a href="#" class="flex items-center gap-3 group">
+                    <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-arcane-purple via-arcane-neon to-arcane-green p-[2px] shadow-lg group-hover:scale-105 transition-transform">
+                        <div class="w-full h-full bg-arcane-bg rounded-[10px] flex items-center justify-center">
+                            <span class="text-arcane-green font-extrabold text-2xl tracking-tighter">A</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="text-2xl font-black tracking-wider uppercase text-white font-display">ARCANE</span>
+                        <span class="text-[10px] tracking-widest text-arcane-green uppercase font-bold -mt-1">CYBER CLUB</span>
+                    </div>
+                </a>
+
+                <!-- NAV LINKS -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-bold tracking-wide uppercase">
+                    <a href="#zones" class="text-gray-300 hover:text-arcane-neon transition-colors">Игровые Зоны</a>
+                    <a href="#rates" class="text-gray-300 hover:text-arcane-neon transition-colors">Тарифы</a>
+                    <a href="#loyalty" class="text-gray-300 hover:text-arcane-neon transition-colors">Лояльность</a>
+                    <a href="#reviews" class="text-gray-300 hover:text-arcane-neon transition-colors">Отзывы</a>
+                    <a href="#tournament" class="text-arcane-green hover:text-white transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-trophy text-xs animate-bounce"></i> Турнир
+                    </a>
+                    <a href="#contacts" class="text-gray-300 hover:text-arcane-neon transition-colors">Контакты</a>
+                </nav>
+
+                <!-- ACTION BUTTONS -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="https://t.me/arcane_adm" target="_blank" class="text-sm font-bold text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+                        <i class="fa-brands fa-telegram text-arcane-neon text-lg"></i>
+                        <span>Админ</span>
+                    </a>
+                    <button onclick="openBookingModal()" class="btn animate__animated animate__pulse animate__infinite px-6 py-2.5 rounded-xl font-bold text-sm bg-gradient-to-r from-arcane-purple to-arcane-green text-black hover:opacity-95 transition-all shadow-md neon-glow-purple hover:scale-105 active:scale-95">
+                        Забронировать
+                    </button>
+                </div>
+
+                <!-- MOBILE MENU BUTTON -->
+                <div class="lg:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none p-2">
+                        <i class="fa-solid fa-bars text-2xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-arcane-card border-b border-arcane-border px-6 pt-4 pb-6 space-y-4">
+            <a href="#zones" class="block text-base font-semibold text-gray-200 hover:text-arcane-neon mobile-link">Игровые Зоны & Железо</a>
+            <a href="#rates" class="block text-base font-semibold text-gray-200 hover:text-arcane-neon mobile-link">Тарифы и Пакеты</a>
+            <a href="#loyalty" class="block text-base font-semibold text-gray-200 hover:text-arcane-neon mobile-link">Программа Лояльности</a>
+            <a href="#reviews" class="block text-base font-semibold text-gray-200 hover:text-arcane-neon mobile-link">Отзывы клиентов</a>
+            <a href="#tournament" class="block text-base font-semibold text-arcane-green hover:text-white mobile-link">🏆 МИКС-ТУРНИР 10 МЛН</a>
+            <a href="#contacts" class="block text-base font-semibold text-gray-200 hover:text-arcane-neon mobile-link">Контакты и Локация</a>
+            
+            <div class="pt-4 border-t border-arcane-border/50 flex flex-col gap-3">
+                <button onclick="openBookingModal()" class="w-full py-3 rounded-xl font-bold bg-gradient-to-r from-arcane-purple to-arcane-green text-black text-center">
+                    Забронировать ПК
+                </button>
+                <a href="https://t.me/arcane_adm" target="_blank" class="w-full py-3 rounded-xl border border-arcane-border text-center text-sm font-bold text-white bg-arcane-bg">
+                    <i class="fa-brands fa-telegram text-arcane-neon mr-2"></i> Написать в Telegram
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative min-h-screen flex items-center justify-center pt-28 pb-16 overflow-hidden">
+        <div class="absolute top-1/4 -left-32 w-96 h-96 bg-arcane-purple/30 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="absolute bottom-10 -right-32 w-96 h-96 bg-arcane-green/20 rounded-full blur-[120px] pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+            
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-arcane-card/80 border border-arcane-border mb-8 shadow-xl">
+                <span class="w-2.5 h-2.5 rounded-full bg-arcane-green animate-ping"></span>
+                <span class="text-xs font-bold tracking-wider uppercase text-arcane-green">Самарканд • ул. Гагарина, 99А</span>
+            </div>
+
+            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tight leading-none mb-6">
+                ARCANE <span class="text-gradient-purple">CYBER CLUB</span>
+            </h1>
+
+            <p class="max-w-3xl mx-auto text-lg sm:text-2xl text-gray-300 font-medium mb-10 leading-relaxed">
+                Максимальный FPS, киберспортивные мониторы до <span class="text-arcane-green font-bold">720 Гц</span>, магнитные клавиатуры и ультимативный комфорт для твоих побед.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="openBookingModal()" class="btn animate__animated animate__pulse animate__infinite w-full sm:w-auto px-9 py-4 rounded-xl font-extrabold text-base bg-gradient-to-r from-arcane-purple to-arcane-green text-black neon-glow-purple hover:scale-105 active:scale-95 transition-all text-center">
+                    <i class="fa-solid fa-gamepad mr-2"></i> Забронировать место
+                </button>
+                <a href="#tournament" class="w-full sm:w-auto px-9 py-4 rounded-xl font-bold text-base bg-arcane-card border border-arcane-border text-white hover:border-arcane-green transition-all text-center flex items-center justify-center gap-2 group">
+                    <i class="fa-solid fa-trophy text-arcane-green group-hover:scale-110 transition-transform"></i> Турнир на 10.000.000 UZS
+                </a>
+            </div>
+
+            <div class="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 text-left">
+                <div class="p-5 rounded-2xl glass-card">
+                    <div class="text-xs uppercase font-bold text-arcane-neon mb-1">Мониторы</div>
+                    <div class="text-2xl sm:text-3xl font-black text-white">От 280Hz до 720Hz</div>
+                    <div class="text-xs text-gray-400 mt-1">ASUS, Alienware, Acer, HKC</div>
+                </div>
+                <div class="p-5 rounded-2xl glass-card">
+                    <div class="text-xs uppercase font-bold text-arcane-green mb-1">Видеокарты</div>
+                    <div class="text-2xl sm:text-3xl font-black text-white">RTX 5070 / 4070 Ti</div>
+                    <div class="text-xs text-gray-400 mt-1">Мощнейшая графика 2026</div>
+                </div>
+                <div class="p-5 rounded-2xl glass-card">
+                    <div class="text-xs uppercase font-bold text-arcane-neon mb-1">Процессоры</div>
+                    <div class="text-2xl sm:text-3xl font-black text-white">Ryzen 9800X3D</div>
+                    <div class="text-xs text-gray-400 mt-1">И топовые i7-12700K / 7800X3D</div>
+                </div>
+                <div class="p-5 rounded-2xl glass-card">
+                    <div class="text-xs uppercase font-bold text-arcane-green mb-1">Девайсы</div>
+                    <div class="text-2xl sm:text-3xl font-black text-white">PRO X2 & GravaStar</div>
+                    <div class="text-xs text-gray-400 mt-1">Магнитные клавиатуры & беспровод</div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ZONES & SPECS SECTION -->
+    <section id="zones" class="py-24 bg-arcane-card/40 border-y border-arcane-border/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-arcane-green font-bold text-xs tracking-widest uppercase mb-2 block">Hardware & Gaming Experience</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white">ИГРОВЫЕ ЗОНЫ И МОЩНОСТИ</h2>
+                <p class="text-gray-400 mt-3">Каждая зона выверена до мелочей: от киберспортивных девайсов до эргономичных кресел.</p>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 mb-12" id="zone-tabs">
+                <button onclick="switchZone('space')" id="tab-space" class="zone-tab-btn px-5 py-3 rounded-xl font-bold text-sm bg-arcane-purple text-white shadow-lg transition-all">SPACE ZONE</button>
+                <button onclick="switchZone('pro')" id="tab-pro" class="zone-tab-btn px-5 py-3 rounded-xl font-bold text-sm bg-arcane-card border border-arcane-border text-gray-300 hover:text-white transition-all">PRO ZONE</button>
+                <button onclick="switchZone('bootcamp')" id="tab-bootcamp" class="zone-tab-btn px-5 py-3 rounded-xl font-bold text-sm bg-arcane-card border border-arcane-border text-gray-300 hover:text-white transition-all">BOOTCAMP</button>
+                <button onclick="switchZone('vip')" id="tab-vip" class="zone-tab-btn px-5 py-3 rounded-xl font-bold text-sm bg-arcane-card border border-arcane-border text-gray-300 hover:text-white transition-all">VIP ZONE</button>
+                <button onclick="switchZone('duo')" id="tab-duo" class="zone-tab-btn px-5 py-3 rounded-xl font-bold text-sm bg-arcane-card border border-arcane-border text-gray-300 hover:text-white transition-all">DUO ZONE</button>
+                <button onclick="switchZone('solo')" id="tab-solo" class="zone-tab-btn px-5 py-3 rounded-xl font-bold text-sm bg-arcane-card border border-arcane-border text-gray-300 hover:text-white transition-all">SOLO ZONE (720Hz)</button>
+            </div>
+
+            <div id="zone-display-container">
+                <!-- Dynamically filled by JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING & RATES SECTION -->
+    <section id="rates" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-arcane-neon font-bold text-xs tracking-widest uppercase mb-2 block">Pricelist & Bundles</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white">ТАРИФЫ И ПАКЕТЫ ИГРЫ</h2>
+                <p class="text-gray-400 mt-3">Выбирай удобный формат: от одного часа до ночного марафона со скидками.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- SPACE ZONE CARD -->
+                <div class="bg-arcane-card rounded-2xl border border-arcane-border p-6 hover:border-arcane-purple/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black text-white">SPACE ZONE</h3>
+                            <span class="px-3 py-1 bg-purple-500/10 text-arcane-neon border border-purple-500/20 text-xs font-bold rounded-full">14.000 UZS/час</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-6">i5-12400F • RTX 4060 • Pixel 280Hz</p>
+                        
+                        <div class="space-y-3 mb-8 text-sm">
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Базовый час</span> <span class="font-bold text-white">14.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 3 часа</span> <span class="font-bold text-arcane-green">35.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 5 часов</span> <span class="font-bold text-arcane-green">55.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Ночь (23:00 - 09:00)</span> <span class="font-bold text-arcane-neon">55.000 UZS</span></div>
+                            <div class="flex justify-between py-2"><span class="text-gray-400">Утро (08:00 - 12:00)</span> <span class="font-bold text-white">30.000 UZS</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('SPACE ZONE')" class="w-full py-3 rounded-xl border border-arcane-border font-bold text-white hover:bg-arcane-purple hover:border-arcane-purple transition-all">
+                        Забронировать Space
+                    </button>
+                </div>
+
+                <!-- PRO ZONE CARD -->
+                <div class="bg-arcane-card rounded-2xl border border-arcane-border p-6 hover:border-arcane-purple/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black text-white">PRO ZONE</h3>
+                            <span class="px-3 py-1 bg-purple-500/10 text-arcane-neon border border-purple-500/20 text-xs font-bold rounded-full">18.000 UZS/час</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-6">i7-12700K • RTX 4070 • Alienware 360Hz</p>
+                        
+                        <div class="space-y-3 mb-8 text-sm">
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Базовый час</span> <span class="font-bold text-white">18.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 3 часа</span> <span class="font-bold text-arcane-green">50.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 5 часов</span> <span class="font-bold text-arcane-green">70.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Ночь (23:00 - 09:00)</span> <span class="font-bold text-arcane-neon">75.000 UZS</span></div>
+                            <div class="flex justify-between py-2"><span class="text-gray-400">Утро (08:00 - 12:00)</span> <span class="font-bold text-white">45.000 UZS</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('PRO ZONE')" class="w-full py-3 rounded-xl border border-arcane-border font-bold text-white hover:bg-arcane-purple hover:border-arcane-purple transition-all">
+                        Забронировать Pro
+                    </button>
+                </div>
+
+                <!-- BOOTCAMP CARD -->
+                <div class="bg-arcane-card rounded-2xl border border-arcane-border p-6 hover:border-arcane-purple/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black text-white">BOOTCAMP</h3>
+                            <span class="px-3 py-1 bg-purple-500/10 text-arcane-neon border border-purple-500/20 text-xs font-bold rounded-full">20.000 UZS/час</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-6">AMD 5 9600X • RTX 5060 • HKC 400Hz</p>
+                        
+                        <div class="space-y-3 mb-8 text-sm">
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Базовый час</span> <span class="font-bold text-white">20.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 3 часа</span> <span class="font-bold text-arcane-green">50.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 5 часов</span> <span class="font-bold text-arcane-green">70.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Ночь (23:00 - 09:00)</span> <span class="font-bold text-arcane-neon">80.000 UZS</span></div>
+                            <div class="flex justify-between py-2"><span class="text-gray-400">Утро (08:00 - 12:00)</span> <span class="font-bold text-white">45.000 UZS</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('BOOTCAMP')" class="w-full py-3 rounded-xl border border-arcane-border font-bold text-white hover:bg-arcane-purple hover:border-arcane-purple transition-all">
+                        Забронировать Bootcamp
+                    </button>
+                </div>
+
+                <!-- VIP ZONE CARD -->
+                <div class="bg-arcane-card rounded-2xl border border-arcane-border p-6 hover:border-arcane-purple/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black text-white">VIP ZONE</h3>
+                            <span class="px-3 py-1 bg-purple-500/10 text-arcane-neon border border-purple-500/20 text-xs font-bold rounded-full">25.000 UZS/час</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-6">Ryzen 7 7800X3D • RTX 4070 Ti • Acer 600Hz</p>
+                        
+                        <div class="space-y-3 mb-8 text-sm">
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Базовый час</span> <span class="font-bold text-white">25.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 3 часа</span> <span class="font-bold text-arcane-green">65.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 5 часов</span> <span class="font-bold text-arcane-green">95.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Ночь (23:00 - 09:00)</span> <span class="font-bold text-arcane-neon">100.000 UZS</span></div>
+                            <div class="flex justify-between py-2"><span class="text-gray-400">Утро (08:00 - 12:00)</span> <span class="font-bold text-white">60.000 UZS</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('VIP ZONE')" class="w-full py-3 rounded-xl border border-arcane-border font-bold text-white hover:bg-arcane-purple hover:border-arcane-purple transition-all">
+                        Забронировать VIP
+                    </button>
+                </div>
+
+                <!-- DUO ZONE CARD -->
+                <div class="bg-arcane-card rounded-2xl border border-arcane-border p-6 hover:border-arcane-green/60 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black text-white">DUO ZONE</h3>
+                            <span class="px-3 py-1 bg-green-500/10 text-arcane-green border border-green-500/20 text-xs font-bold rounded-full">30.000 UZS/час</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-6">Ryzen 9850X3D • RTX 5070 • Alienware 500Hz</p>
+                        
+                        <div class="space-y-3 mb-8 text-sm">
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Базовый час</span> <span class="font-bold text-white">30.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 3 часа</span> <span class="font-bold text-arcane-green">80.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 5 часов</span> <span class="font-bold text-arcane-green">110.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Ночь (23:00 - 09:00)</span> <span class="font-bold text-arcane-neon">110.000 UZS</span></div>
+                            <div class="flex justify-between py-2"><span class="text-gray-400">Утро (08:00 - 12:00)</span> <span class="font-bold text-white">70.000 UZS</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('DUO ZONE')" class="w-full py-3 rounded-xl border border-arcane-border font-bold text-white hover:bg-arcane-purple transition-all">
+                        Забронировать Duo
+                    </button>
+                </div>
+
+                <!-- SOLO ZONE CARD -->
+                <div class="bg-arcane-card rounded-2xl border-glow p-6 neon-glow-purple relative flex flex-col justify-between">
+                    <span class="absolute -top-3 right-6 px-3 py-1 bg-gradient-to-r from-arcane-purple to-arcane-green text-black font-extrabold text-xs rounded-full">MAX FPS 720HZ</span>
+                    <div>
+                        <div class="flex items-center justify-between mb-4">
+                            <h3 class="text-2xl font-black text-white">SOLO ZONE</h3>
+                            <span class="px-3 py-1 bg-gradient-to-r from-arcane-purple to-arcane-green text-black text-xs font-black rounded-full">50.000 UZS/час</span>
+                        </div>
+                        <p class="text-xs text-gray-400 mb-6">Ryzen 7 9800X3D • RTX 5070 • ASUS 720Hz</p>
+                        
+                        <div class="space-y-3 mb-8 text-sm">
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Базовый час</span> <span class="font-bold text-white">50.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 3 часа</span> <span class="font-bold text-arcane-green">120.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Пакет 5 часов</span> <span class="font-bold text-arcane-green">180.000 UZS</span></div>
+                            <div class="flex justify-between py-2 border-b border-arcane-border/50"><span class="text-gray-400">Ночь (23:00 - 09:00)</span> <span class="font-bold text-arcane-neon">200.000 UZS</span></div>
+                            <div class="flex justify-between py-2"><span class="text-gray-400">Утро (08:00 - 12:00)</span> <span class="font-bold text-white">110.000 UZS</span></div>
+                        </div>
+                    </div>
+                    <button onclick="openBookingModal('SOLO ZONE')" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-arcane-purple to-arcane-green font-extrabold text-black hover:opacity-90 transition-all shadow-lg">
+                        Забронировать Solo 720Hz
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- LOYALTY PROGRAM SECTION -->
+    <section id="loyalty" class="py-24 bg-arcane-card/40 border-y border-arcane-border/60 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-arcane-green font-bold text-xs tracking-widest uppercase mb-2 block">Cashback & Rewards</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white">ПРОГРАММА ЛОЯЛЬНОСТИ</h2>
+                <p class="text-gray-400 mt-3">Играй чаще в Arcane — получай постоянный повышенный кешбэк на свой игровой баланс!</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 sm:gap-6">
+                <div class="p-6 rounded-2xl glass-card text-center border-t-4 border-gray-400 hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-shield-halved text-gray-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white text-lg">НАЧАЛЬНЫЙ</h4>
+                    <div class="text-3xl font-black text-arcane-green my-2">5%</div>
+                    <p class="text-[11px] text-gray-400">Кешбэк на счёт</p>
+                </div>
+
+                <div class="p-6 rounded-2xl glass-card text-center border-t-4 border-amber-600 hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-medal text-amber-600 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white text-lg">БРОНЗА</h4>
+                    <div class="text-3xl font-black text-arcane-green my-2">10%</div>
+                    <p class="text-[11px] text-gray-400">Кешбэк на счёт</p>
+                </div>
+
+                <div class="p-6 rounded-2xl glass-card text-center border-t-4 border-slate-300 hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-award text-slate-300 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white text-lg">СЕРЕБРО</h4>
+                    <div class="text-3xl font-black text-arcane-green my-2">15%</div>
+                    <p class="text-[11px] text-gray-400">Кешбэк на счёт</p>
+                </div>
+
+                <div class="p-6 rounded-2xl glass-card text-center border-t-4 border-yellow-400 hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-crown text-yellow-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white text-lg">ЗОЛОТО</h4>
+                    <div class="text-3xl font-black text-arcane-green my-2">20%</div>
+                    <p class="text-[11px] text-gray-400">Кешбэк на счёт</p>
+                </div>
+
+                <div class="p-6 rounded-2xl glass-card text-center border-t-4 border-cyan-400 hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-gem text-cyan-400 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white text-lg">ПЛАТИНА</h4>
+                    <div class="text-3xl font-black text-arcane-green my-2">25%</div>
+                    <p class="text-[11px] text-gray-400">Кешбэк на счёт</p>
+                </div>
+
+                <div class="p-6 rounded-2xl glass-card text-center border-t-4 border-red-500 hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-meteor text-red-500 text-3xl mb-3"></i>
+                    <h4 class="font-bold text-white text-lg">РУБИН</h4>
+                    <div class="text-3xl font-black text-arcane-green my-2">30%</div>
+                    <p class="text-[11px] text-gray-400">Максимальный статус</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- REVIEWS SECTION (YANDEX STYLE) -->
+    <section id="reviews" class="py-24 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-arcane-green font-bold text-xs tracking-widest uppercase mb-2 block">Отзывы игроков</span>
+                <h2 class="text-3xl sm:text-5xl font-black text-white">ЧТО О НАС ГОВОРЯТ НА ЯНДЕКСЕ</h2>
+                
+                <div class="inline-flex items-center gap-3 px-5 py-2.5 rounded-2xl bg-arcane-card border border-arcane-border mt-6">
+                    <div class="flex items-center text-amber-400 gap-1 text-lg">
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                        <i class="fa-solid fa-star"></i>
+                    </div>
+                    <span class="text-white font-black text-xl">4.9</span>
+                    <span class="text-gray-400 text-xs">на основе отзывов в Яндекс Картах</span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Review 1 -->
+                <div class="bg-arcane-card border border-arcane-border p-6 rounded-2xl flex flex-col justify-between hover:border-arcane-purple transition-all shadow-lg">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-500 font-bold text-lg shrink-0">
+                                Я
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-white font-bold text-sm truncate">Тимур М.</h4>
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mt-0.5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 text-[10px] ml-1">12.02.2026</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            Arcane — один из лучших игровых клубов, в которых мне довелось побывать. Современное оборудование, комфортная атмосфера и дружелюбный персонал делают каждое посещение максимально приятным. Отличный выбор игр, стабильный интернет и продуманная организация пространства создают идеальные условия как для соревновательной игры, так и для отдыха. Настоящее место силы для геймеров.
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-arcane-border/50 flex items-center justify-between text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fa-brands fa-yandex text-red-500"></i> Яндекс Карты</span>
+                        <span class="text-arcane-green font-semibold">Проверенный отзыв</span>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-arcane-card border border-arcane-border p-6 rounded-2xl flex flex-col justify-between hover:border-arcane-purple transition-all shadow-lg">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-500 font-bold text-lg shrink-0">
+                                Я
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-white font-bold text-sm truncate">Sabina S</h4>
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mt-0.5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 text-[10px] ml-1">19.07.2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            Очень достойный компьютерный клуб!
+Все ПК — на мощном "железе", с быстрыми видеокартами, хорошими мониторами и периферией. Игры летят без лагов.
+Атмосфера супер — тёплый свет, удобные кресла, хороший микроклимат (не жарко и не душно). Wi-Fi стабильный, гарнитуры качественные.
+Поддержка и администраторы — отдельный плюс: всегда помогут и быстро решат любые вопросы.
+Идеальное место как для катки с друзьями, так и для соло-гейминга. Часто бываю — и всегда с удовольствием!
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-arcane-border/50 flex items-center justify-between text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fa-brands fa-yandex text-red-500"></i> Яндекс Карты</span>
+                        <span class="text-arcane-green font-semibold">Проверенный отзыв</span>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-arcane-card border border-arcane-border p-6 rounded-2xl flex flex-col justify-between hover:border-arcane-purple transition-all shadow-lg">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-500 font-bold text-lg shrink-0">
+                                Я
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-white font-bold text-sm truncate">Karen оггг</h4>
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mt-0.5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 text-[10px] ml-1">27.05.2025</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            Отличное место, чтобы посидеть спокойно поиграть как в кс доту так и во что угодно даже за маленькие деньги предоставляют отличный пк с полным фаршем и отличной аппаратурой, понравилось мне там то что никто не кричит, бывали случаи но за походов 20 было максимум 2 случая и то редко, от чего я вообще восторге так это то как узаживают там за местом кажлый раз после того как клиент встает с пк администратор подзодит и убирает и вытирает место, удобные кресла и много места за компом советую 👍🏻
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-arcane-border/50 flex items-center justify-between text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fa-brands fa-yandex text-red-500"></i> Яндекс Карты</span>
+                        <span class="text-arcane-green font-semibold">Проверенный отзыв</span>
+                    </div>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="bg-arcane-card border border-arcane-border p-6 rounded-2xl flex flex-col justify-between hover:border-arcane-purple transition-all shadow-lg">
+                    <div>
+                        <div class="flex items-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-red-600/20 border border-red-500/40 flex items-center justify-center text-red-500 font-bold text-lg shrink-0">
+                                Я
+                            </div>
+                            <div class="overflow-hidden">
+                                <h4 class="text-white font-bold text-sm truncate">Саид Мамадалиев</h4>
+                                <div class="flex items-center gap-1 text-amber-400 text-xs mt-0.5">
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="text-gray-400 text-[10px] ml-1">09.09.2026</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-gray-300 text-sm leading-relaxed mb-4">
+                            Буквально один из самых лучших компьютерных клубов в Узбекистане.
+OLED Asus Rog 2k 27 дюймов 500гц
+Мышка Logitech Superstrike
+Клавиатура Gravastar
+Очень красивый и мощный ПК
+Уши Logitech
+Спокойно выдает выше 500фпс в кс2
+Ryzen 7 9800X3D делает свое (бтв во многих нетках стоят Intel, видно что хозяин разбирается в ПК)
+Видео карты 5070 хватает за глаза
+На таком сэтпе пойдет любая игрушка в QHD на ультрах)
+Таких характеристик нет на моей памяти ни в одном ПК клубе в Узбекистане
+
+Сервис и бар тоже очень радуют.
+100% рекомендуется к посещению
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-arcane-border/50 flex items-center justify-between text-xs text-gray-500">
+                        <span class="flex items-center gap-1.5"><i class="fa-brands fa-yandex text-red-500"></i> Яндекс Карты</span>
+                        <span class="text-arcane-green font-semibold">Проверенный отзыв</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="mt-12 text-center">
+                <a href="https://yandex.uz/maps/-/CXAuvRi0" target="_blank" class="inline-flex items-center gap-3 px-8 py-3.5 rounded-xl bg-arcane-card border border-arcane-border hover:border-red-500 text-white font-bold text-sm transition-all hover:scale-105">
+                    <i class="fa-brands fa-yandex text-red-500 text-lg"></i>
+                    <span>Читать все отзывы на Яндекс Картах</span>
+                    <i class="fa-solid fa-arrow-up-right-from-square text-xs text-gray-400"></i>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- TOURNAMENT SECTION -->
+    <section id="tournament" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-r from-arcane-purple/20 via-transparent to-arcane-green/20 pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="bg-gradient-to-br from-arcane-card via-arcane-cardLight to-arcane-card rounded-3xl border-2 border-arcane-green p-8 sm:p-12 neon-glow-green shadow-2xl">
+                
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    
+                    <div class="lg:col-span-7">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-arcane-green/10 border border-arcane-green/30 text-arcane-green text-xs font-bold uppercase mb-4">
+                            <i class="fa-solid fa-fire text-xs"></i> Предстоящий Киберспортивный Ивент
+                        </div>
+
+                        <h2 class="text-4xl sm:text-6xl font-black text-white mb-4">
+                            ГРАНДИОЗНЫЙ <br/><span class="text-gradient-gold">МИКС-ТУРНИР</span>
+                        </h2>
+
+                        <p class="text-gray-300 text-base sm:text-lg mb-8">
+                            Турнир проходит исключительно среди гостей ARCANE — только свои игроки, знакомая атмосфера и настоящая конкуренция.
+                        </p>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                            <div class="bg-arcane-bg/80 p-4 rounded-xl border border-arcane-border">
+                                <span class="text-xs text-gray-400 uppercase font-bold block mb-1">Дата проведения</span>
+                                <span class="text-2xl font-black text-white">27-е число</span>
+                            </div>
+                            <div class="bg-arcane-bg/80 p-4 rounded-xl border border-arcane-border">
+                                <span class="text-xs text-gray-400 uppercase font-bold block mb-1">Призовой Фонд</span>
+                                <span class="text-2xl font-black text-arcane-green">10.000.000 UZS</span>
+                            </div>
+                        </div>
+
+                        <button onclick="openTournamentModal()" class="px-8 py-4 rounded-xl bg-gradient-to-r from-arcane-green to-emerald-400 font-extrabold text-black text-base shadow-lg hover:scale-105 active:scale-95 transition-all">
+                            Зарегистрироваться на Турнир &rarr;
+                        </button>
+                    </div>
+
+                    <div class="lg:col-span-5 bg-arcane-bg/90 rounded-2xl p-6 border border-arcane-border">
+                        <h3 class="text-xl font-bold text-white mb-6 flex items-center gap-2">
+                            <i class="fa-solid fa-trophy text-arcane-gold"></i> Распределение призовых
+                        </h3>
+
+                        <div class="space-y-4">
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-amber-500/20 to-transparent border border-amber-500/30">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-amber-500 text-black font-black flex items-center justify-center text-lg">1</div>
+                                    <span class="font-bold text-white">1-е МЕСТО</span>
+                                </div>
+                                <span class="text-xl font-black text-amber-400">5.000.000 UZS</span>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-slate-400/20 to-transparent border border-slate-400/30">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-slate-300 text-black font-black flex items-center justify-center text-lg">2</div>
+                                    <span class="font-bold text-white">2-е МЕСТО</span>
+                                </div>
+                                <span class="text-xl font-black text-slate-200">3.000.000 UZS</span>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 rounded-xl bg-gradient-to-r from-amber-700/20 to-transparent border border-amber-700/30">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-lg bg-amber-700 text-white font-black flex items-center justify-center text-lg">3</div>
+                                    <span class="font-bold text-white">3-е МЕСТО</span>
+                                </div>
+                                <span class="text-xl font-black text-amber-500">2.000.000 UZS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTS & LOCATION SECTION -->
+    <section id="contacts" class="py-24 bg-arcane-card/40 border-t border-arcane-border relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                
+                <div>
+                    <span class="text-arcane-green font-bold text-xs tracking-widest uppercase mb-2 block">Location & Booking</span>
+                    <h2 class="text-3xl sm:text-5xl font-black text-white mb-6">ЖДЁМ ТЕБЯ В ARCANE</h2>
+                    <p class="text-gray-400 mb-8 leading-relaxed">
+                        Клуб работает круглосуточно. Бронируй ПК заранее, чтобы гарантировать лучшее место в любой зоне!
+                    </p>
+
+                    <div class="space-y-6 mb-10">
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-arcane-purple/20 border border-arcane-purple/40 flex items-center justify-center text-arcane-neon text-xl shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Адрес</h4>
+                                <p class="text-gray-300">г. Самарканд, улица Юрия Гагарина, 99А</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-arcane-green/20 border border-arcane-green/40 flex items-center justify-center text-arcane-green text-xl shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Телефон бронирования</h4>
+                                <a href="tel:+998904721111" class="text-gray-300 hover:text-arcane-green transition-colors">+998 (90) 472-11-11</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-purple-500/20 border border-purple-500/40 flex items-center justify-center text-purple-300 text-xl shrink-0">
+                                <i class="fa-brands fa-telegram"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Администратор в Telegram</h4>
+                                <a href="https://t.me/arcane_adm" target="_blank" class="text-arcane-neon hover:underline">@arcane_adm</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-12 h-12 rounded-xl bg-pink-500/20 border border-pink-500/40 flex items-center justify-center text-pink-400 text-xl shrink-0">
+                                <i class="fa-brands fa-instagram"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold text-lg">Instagram</h4>
+                                <a href="https://www.instagram.com/arcane_sam" target="_blank" class="text-pink-400 hover:underline">@arcane_sam</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button onclick="openBookingModal()" class="px-8 py-3.5 rounded-xl bg-gradient-to-r from-arcane-purple to-arcane-green font-bold text-black shadow-lg">
+                            Онлайн Заявка
+                        </button>
+                        <a href="https://yandex.uz/maps/-/CXAuvRi0" target="_blank" class="px-8 py-3.5 rounded-xl border border-arcane-border font-bold text-white hover:bg-arcane-card transition-all">
+                            Яндекс Карта &rarr;
+                        </a>
+                    </div>
+                </div>
+
+                <div class="rounded-3xl border border-arcane-border overflow-hidden h-[450px] shadow-2xl relative">
+                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A20a27779146c44fb8635c1fc9631bae6e0ad09b5b13add6f3c141bfadeab2659&amp;source=constructor" width="100%" height="100%" frameborder="0" allowfullscreen="true" class="w-full h-full grayscale hover:grayscale-0 transition-all duration-500"></iframe>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-arcane-bg border-t border-arcane-border py-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-arcane-purple to-arcane-green flex items-center justify-center text-black font-extrabold text-lg">
+                    A
+                </div>
+                <span class="text-lg font-black tracking-wider text-white">ARCANE CYBER CLUB</span>
+            </div>
+
+            <div class="flex items-center gap-6 text-xl">
+                <a href="https://t.me/arcane_adm" target="_blank" class="text-gray-400 hover:text-arcane-neon transition-colors"><i class="fa-brands fa-telegram"></i></a>
+                <a href="https://www.instagram.com/arcane_sam" target="_blank" class="text-gray-400 hover:text-pink-400 transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                <a href="tel:+998904721111" class="text-gray-400 hover:text-arcane-green transition-colors"><i class="fa-solid fa-phone"></i></a>
+            </div>
+
+            <p class="text-xs text-gray-500">© 2026 ARCANE CYBER CLUB Samarkand. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- BOOKING MODAL -->
+    <div id="booking-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-arcane-card border border-arcane-border w-full max-w-lg rounded-3xl p-8 relative shadow-2xl">
+            <button onclick="closeBookingModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+            
+            <h3 class="text-3xl font-black text-white mb-2" id="modal-zone-title">Бронирование ПК</h3>
+            <p class="text-sm text-gray-400 mb-6">Заполните форму, и наш администратор свяжется с вами для подтверждения.</p>
+
+            <form onsubmit="handleBookingSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Ваше Имя</label>
+                    <input type="text" id="book-name" required placeholder="Александр" class="w-full px-4 py-3 rounded-xl bg-arcane-bg border border-arcane-border text-white focus:outline-none focus:border-arcane-neon">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Номер телефона</label>
+                    <input type="tel" id="book-phone" required placeholder="+998 90 123-45-67" class="w-full px-4 py-3 rounded-xl bg-arcane-bg border border-arcane-border text-white focus:outline-none focus:border-arcane-neon">
+                </div>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Игровая Зона</label>
+                        <select id="book-zone" class="w-full px-4 py-3 rounded-xl bg-arcane-bg border border-arcane-border text-white focus:outline-none focus:border-arcane-neon">
+                            <option value="SPACE ZONE">SPACE ZONE</option>
+                            <option value="PRO ZONE">PRO ZONE</option>
+                            <option value="BOOTCAMP">BOOTCAMP</option>
+                            <option value="VIP ZONE">VIP ZONE</option>
+                            <option value="DUO ZONE">DUO ZONE</option>
+                            <option value="SOLO ZONE 720Hz">SOLO ZONE (720Hz)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Количество часов</label>
+                        <select id="book-hours" class="w-full px-4 py-3 rounded-xl bg-arcane-bg border border-arcane-border text-white focus:outline-none focus:border-arcane-neon">
+                            <option value="1 час">1 час</option>
+                            <option value="Пакет 3 часа">Пакет 3 часа</option>
+                            <option value="Пакет 5 часов">Пакет 5 часов</option>
+                            <option value="Ночной пакет (23:00-09:00)">Ночной пакет</option>
+                            <option value="Пакет Утро (08:00-12:00)">Пакет Утро</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-arcane-purple to-arcane-green text-black font-extrabold text-base mt-4 shadow-lg">
+                    Отправить бронь в Telegram
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TOURNAMENT MODAL -->
+    <div id="tournament-modal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+        <div class="bg-arcane-card border border-arcane-green w-full max-w-lg rounded-3xl p-8 relative shadow-2xl">
+            <button onclick="closeTournamentModal()" class="absolute top-6 right-6 text-gray-400 hover:text-white text-2xl"><i class="fa-solid fa-xmark"></i></button>
+            
+            <span class="text-xs font-bold text-arcane-green uppercase tracking-widest block mb-1">Призовой Фонд 10.000.000 UZS</span>
+            <h3 class="text-3xl font-black text-white mb-2">Регистрация на МИКС-ТУРНИР</h3>
+            <p class="text-sm text-gray-400 mb-6">Введите свой никнейм и контакты для участия 27-го числа.</p>
+
+            <form onsubmit="handleTournamentSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Имя и Никнейм</label>
+                    <input type="text" id="tourney-nick" required placeholder="Иван 's1mple' Иванов" class="w-full px-4 py-3 rounded-xl bg-arcane-bg border border-arcane-border text-white focus:outline-none focus:border-arcane-green">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Телефон / Telegram</label>
+                    <input type="text" id="tourney-contact" required placeholder="@username или +998 90..." class="w-full px-4 py-3 rounded-xl bg-arcane-bg border border-arcane-border text-white focus:outline-none focus:border-arcane-green">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase text-gray-400 mb-1">Дисциплина / Игра</label>
+                    <select id="tourney-game" class="w-full px-4 py-3 rounded-xl bg-arcane-bg border border-arcane-border text-white focus:outline-none focus:border-arcane-green">
+                        <option value="CS2 Mix">Counter-Strike 2 (Mix)</option>
+                        <option value="Dota 2 Mix">Dota 2 (Mix)</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="w-full py-4 rounded-xl bg-gradient-to-r from-arcane-green to-emerald-400 text-black font-extrabold text-base mt-4 shadow-lg">
+                    Зарегистрироваться
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Custom JS Script -->
+    <script src="script.js"></script>
+</body>
+</html>
